@@ -201,6 +201,13 @@
             console.log('add tag:' + tag);
         });
     };
+    ext.h3 = function(str) {
+        tag = '<h3>' + str + '</h3>';
+        html += tag;
+        $.post('http://localhost:5678/add', {tag: tag}, function() {
+            console.log('add tag:' + tag);
+        });
+    };
 
     ext.p = function(str) {
         tag = '<p>' + str + '</p>';
@@ -265,6 +272,46 @@
             console.log('add tag:' + tag);
         });
     };
+    
+    ext.ul = function() {
+        tag = '<ul>';
+        html += tag;
+        $.post('http://localhost:5678/add', {tag: tag}, function() {
+            console.log('add tag:' + tag);
+        });
+    };
+    
+    ext.li = function(str) {
+        tag = '<li>' + str + '</li>';
+        html += tag;
+        $.post('http://localhost:5678/add', {tag: tag}, function() {
+            console.log('add tag:' + tag);
+        });
+    };
+    
+        ext.ul_end = function() {
+        tag = '</ul>';
+        html += tag;
+        $.post('http://localhost:5678/add', {tag: tag}, function() {
+            console.log('add tag:' + tag);
+        });
+    };
+    
+        ext.ol = function() {
+        tag = '<ol type=' + str + '>' ;
+        html += tag;
+        $.post('http://localhost:5678/add', {tag: tag}, function() {
+            console.log('add tag:' + tag);
+        });
+    };
+
+        ext.ol_end = function() {
+        tag = '</ol>';
+        html += tag;
+        $.post('http://localhost:5678/add', {tag: tag}, function() {
+            console.log('add tag:' + tag);
+        });
+    };
 
     ext.body_end = function() {
         tag = '</body>';
@@ -308,6 +355,7 @@
             [' ', '<body>', 'body'],
             [' ', '<h1> %s </h1>', 'h1', 'h1'],
             [' ', '<h2> %s </h2>', 'h2', 'h2'],
+            [' ', '<h3> %s </h3>', 'h3', 'h3'],
             [' ', '<p> %s </p>', 'p', 'p'],
             [' ', '<br />', 'br'],
             [' ', '<table border="1">', 'table'],
@@ -316,12 +364,22 @@
             [' ', '<img src=" %s ">', 'img', 'https://wiki.scratch.mit.edu/w/images/Cat.png'],
             [' ', '</tr>', 'tr_end'],
             [' ', '</table>', 'table_end'],
+            [' ', '<ul>', 'ul'],
+            [' ', '<li> %s </li>', 'li', 'li'],
+            [' ', '</ul>', 'ul_end'],
+            [' ', '<ol type= %m.oltype >', 'ol', '"1"'],
+            [' ', '</ol>', 'ol_end'],
             [' ', '</body>', 'body_end'],
             [' ', '</html>', 'html_end'],
             [' ', 'Set password to %s', 'set_password', password],
             [' ', 'Publish to http:// %s .scratch2html.com/ %s', 'publish', username, ''],
             [' ', 'Open page', 'open_page']
-        ]
+
+        ],
+        menus: {
+        oltype: ['"1"', '"A"'],
+
+        },
     };
 
     ScratchExtensions.register('Scratch2HTML', descriptor, ext);
